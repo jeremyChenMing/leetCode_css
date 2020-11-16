@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <img src="./assets/longfor.png" />
+  </div>
+</body>
+
+<script>
+  function getCount(arr) {
+    var level = 0;
+    var result = {};
+    function loop(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] instanceof Array) {
+          level += 1;
+          if (arr[i].length) {
+            loop(arr[i])
+          } else {
+            // 末级为空数组也计入
+            // if (!result[level]) {
+            //   result[level] = []
+            // }
+            // result[level] = result[level].concat('-')
+            result[level] = 0;
+            level--;
+          }
+        } else {
+          if (!result[level]) {
+            // result[level] = []
+            result[level] = 0
+          }
+          // result[level] = result[level].concat(arr[i])
+          result[level] += arr[i]
+        }
+      }
+      level--;
+    }
+    loop(arr);
+    return result
+  }
+
+  var arr1 = [
+    [1, 1], 2, [1, [4, []]], 3
+  ]
+  var arr = [
+    [
+      [1, [1, []], 2], 3,4
+    ],
+    5,
+    6
+  ];
+  // const need = [[1,1],2,[1,1]]
+  // const need = [1,[4,[6]]]
+  const need = [[[1,[]],0]]
+  var mes = getCount(need);
+  console.log(mes, '维度')
+  const numb = Object.keys(mes).map(item => Number(item))
+  var max = Math.max(...numb);
+  let result = [];
+  for (let i = 0; i <= max; i++) {
+    result.push(mes[i] ? mes[i] : 0)
+  }
+  console.log(result)
+
+
+  // const strArr = JSON.parse('[1,2,3,4]') 
+
+</script>
+
+</html>
