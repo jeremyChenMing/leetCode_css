@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leet</title>
+</head>
+
+<body>
+
+  <script>
+    // var arr = [1, 2, 3, 3, 4, 4, 5, 5]
+    var arr = [1, 2, 3, 3, 4, 5]
+    // var arr = [1, 2, 3, 4, 4, 5]
+
+    const isPossible = (nums) => {
+
+      const funcs = (arr, result = '-') => {
+        var min = arr[0]
+        var index = 0
+        console.log(arr)
+
+        while (arr.includes(min)) {
+          arr.splice(arr.indexOf(min), 1)
+          min += 1
+          index++
+        }
+
+        console.log(index, arr)
+        if (index >= 3 && arr.length >= 3) {
+          funcs(arr, result)
+        } else if (index >= 3 && arr.length === 0) {
+          console.log('second')
+          result = true
+        } else {
+          result = false
+        }
+        console.log(result, '123')
+        return result
+      }
+      funcs(nums)
+
+    }
+    isPossible(arr)
+  </script>
+</body>
+
+</html>
