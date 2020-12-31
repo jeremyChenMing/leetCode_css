@@ -161,6 +161,6 @@ class Snows {
 // })
 new Snows({
   isRain: false,
-  num: 50,
-  maxSpeed: 1
+  num: 100,
+  maxSpeed: 5
 })
