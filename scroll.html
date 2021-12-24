@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>滚动条</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box {
+        width: 300px;
+        height: 400px;
+        border: 1px solid red;
+        margin: 100px;
+        position: relative;
+        overflow: hidden;
+        padding-right: 20px;
+        padding-bottom: 20px;
+      }
+      .wrapper::-webkit-scrollbar {
+        display: none;
+      }
+      .wrapper {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: red;
+      }
+      .content {
+        width: 400px;
+        /* position: absolute; */
+        /* top: 0;
+        left: 0; */
+        background-color: #fff;
+      }
+      .scroll {
+        width: 18px;
+        height: calc(100% - 18px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #eee;
+      }
+      .bar {
+        height: 100px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: red;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .hor {
+        width: calc(100% - 18px);
+        height: 18px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(100, 10, 200, 0.2);
+      }
+      .horbar {
+        width: 100px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #00c;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .test {
+        width: 400px;
+        height: 400px;
+        margin: 50px;
+        border: 1px solid #ccc;
+        overflow: auto;
+      }
+      .test .tt {
+        width: 600px;
+        height: 600px;
+        background-color: #fcf;
+        background: linear-gradient(145deg, #fff 0%, red 100%);
+      }
+      .test::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+        height: 10px;
+      }
+      .test::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: #535353;
+      }
+      .test::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background: #ededed;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" class="box">
+      <div class="wrapper">
+        <div id="content" class="content">
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+          我可以变成变成一个大佬，总有一天，我能学好js，css，html，还有vue以及react；
+        </div>
+      </div>
+      <div id="scroll" class="scroll">
+        <div id="bar" class="bar"></div>
+      </div>
+      <div id="hor" class="hor">
+        <div id="horbar" class="horbar"></div>
+      </div>
+    </div>
+    <div class="test">
+      <div class="tt"></div>
+    </div>
+    <script src="./scroll.js"></script>
+  </body>
+</html>

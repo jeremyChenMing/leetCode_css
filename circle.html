@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #f5f5f5;
+      }
+
+      .progress_box {
+        position: relative;
+        width: 220px;
+        height: 220px;
+        /* // 这里的宽高是必须大于等于canvas圆环的直径 否则绘制到盒子外面就看不见了
+        // 一开始设置 width:440px; height:440px; 发现 在360X640分辨率的设备，下绘制的圆环跑盒子外去了
+        // 小程序使用px单位适配 ，但是canvas绘制的是px单位的。所以只能用px单位绘制的圆环在盒子内显示 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+      }
+      .progress_bg {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+      }
+      .progress_canvas {
+        width: 220px;
+        height: 220px;
+        position: relative;
+      }
+      .progress_text {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .progress_info {
+        font-size: 36px;
+        padding-left: 16px;
+        letter-spacing: 2px;
+      }
+      .progress_dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #fb9126;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="progress_box">
+        <canvas
+          class="progress_bg"
+          width="220"
+          height="220"
+          id="canvasProgressbg"
+        >
+        </canvas>
+        <canvas
+          class="progress_canvas"
+          width="440"
+          height="440"
+          id="canvasProgress"
+        >
+        </canvas>
+        <div class="progress_text">66%</div>
+      </div>
+    </div>
+    <script>
+      function drawProgressbg() {
+        // 使用 wx.createContext 获取绘图上下文 context
+        const dom = document.getElementById("canvasProgressbg")
+        const ctx = dom.getContext("2d")
+        ctx.lineWidth = 4 // 设置圆环的宽度
+        ctx.strokeStyle = "#20183b" // 设置圆环的颜色
+        ctx.lineCap = "round" // 设置圆环端点的形状
+        ctx.beginPath() //开始一个新的路径
+        ctx.arc(110, 110, 100, 0, 2 * Math.PI)
+        //设置一个原点(110,110)，半径为100的圆的路径到当前路径
+        ctx.stroke() //对当前路径进行描边
+        // ctx.draw()
+      }
+      drawProgressbg()
+
+      function drawCircle(step) {
+        console.log(step)
+        const dom = document.getElementById("canvasProgress")
+        const ctx = dom.getContext("2d")
+        var gradient = ctx.createLinearGradient(200, 100, 100, 200)
+        gradient.addColorStop("0", "#2661DD")
+        gradient.addColorStop("0.5", "#40ED94")
+        gradient.addColorStop("1.0", "#5956CC")
+        ctx.lineWidth = 10 * 2 // 设置圆环的宽度
+        ctx.strokeStyle = true ? "#5584ff" : gradient // 设置圆环的颜色
+        ctx.lineCap = "round" // 设置圆环端点的形状
+        ctx.beginPath() //开始一个新的路径
+        // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
+        ctx.arc(
+          110 * 2,
+          110 * 2,
+          100 * 2,
+          -Math.PI / 2,
+          step * Math.PI - Math.PI / 2
+        )
+        ctx.stroke()
+      }
+
+      var count = 0,
+        num = 100,
+        timer = null
+      function countInterval() {
+        timer = setInterval(() => {
+          if (count <= num) {
+            document.querySelector(".progress_text").innerText = count + "%"
+            drawCircle(count / (num / 2))
+            count++
+          } else {
+            console.log("结束")
+            clearInterval(timer)
+          }
+        }, 100)
+      }
+      // countInterval()
+    </script>
+  </body>
+</html>
