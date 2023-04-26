@@ -1,7 +1,7 @@
 # 文件夹简介
 
 
-## rect.html
+## lampLoading.html
   + 跑马灯效果的源泉loading
 
 ## loading.html + loading.css
